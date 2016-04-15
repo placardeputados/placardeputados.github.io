@@ -1,0 +1,36 @@
+<div class="row">
+	</div>
+    <div class="col-md-8" style="color: white">
+		<img ng-src="{{polict.image}}" alt="" width="90%">
+    </div>
+    <div class="col-md-4">
+    	<div class="panel panel-primary">
+    	  <p> <h3 style="margin: 20px;" align="center">Deputado(a): {{ polict.name}}</h3></p>
+    	  <p> <h3 style="margin: 20px;" align="center">Partido: {{ polict.party}}</h3></p>
+    	  <p> <h3 style="margin: 20px;" align="center">Estado: {{ polict.state}}</h3></p>
+    	  <p> <h3 style="margin: 20px;" align="center">Email: {{ polict.email}}</h3></p>
+    	  <p> <h3 style="margin: 20px;" align="center">Telefone: {{ polict.phone}}</h3></p>
+    	</div>
+    </div>
+    <div class="col-md-4">
+		
+    	<div class="panel panel-primary" style="background-color: #326EB4" data-ng-if="polict.trend == 'yes'">
+    	  <p> <h1 style="margin: 20px;" align="center">Pretende votar a favor do Impeachment</h1></p>
+    	</div>
+    	<div class="panel panel-primary" style="background-color: #D81111" data-ng-if="polict.trend == 'no'">
+    	  <p> <h1 style="margin: 20px;" align="center">Pretende votar contra do Impeachment</h1></p>
+    	</div>
+    	<div class="panel panel-primary" style="background-color: #A2A2A2" data-ng-if="polict.trend != 'no' && polict.trend != 'yes'">
+    	  <p> <h1 style="margin: 20px;" align="center">Não respondeu, ou não foi encontrado.</h1></p>
+    	</div>
+
+
+    </div>
+    <div class="col-md-4 big-share">
+    	<div class="fb-share-button" 
+    			data-href="{{url}}" 
+    			data-layout="button_count" data-iframe="false">
+    	</div>
+</div>
+
+

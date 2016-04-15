@@ -1,0 +1,124 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-4"></div>
+		<div class="col-md-4" align="center"><div class="fb-share-button" 
+                        data-href="{{url}}" 
+                        data-layout="button_count" data-iframe="false">
+            </div></div>
+		<div class="col-md-4"></div>
+	</div>
+	</div>
+    <div class="col-md-12" style="color: white">
+        <div class="col-md-4">
+            <div class="panel panel-primary" style="border: thin solid #326EB4">
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="background-color: #326EB4" align="center">A FAVOR</h3> </div>
+                <div class="panel-body" style="color:#326EB4" align="center">
+                    <h1>{{::resultado.results.tendency.favor}}</h1>
+                    <small>&nbsp;</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-primary" style="border: thin solid #D81111">
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="background-color: #D81111" align="center">CONTRA</h3> </div>
+                <div class="panel-body" style="color:#D81111;" align="center">
+                    <h1>{{::resultado.results.tendency.against}}</h1>
+                    <small>&nbsp;</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-primary" style="border: thin solid #A2A2A2">
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="background-color: #A2A2A2" align="center">NÃO OPINOU</h3> </div>
+                <div class="panel-body" style="color:#A2A2A2" align="center">
+                    <h1>{{::resultado.results.tendency.not_answer + 
+                    resultado.results.tendency.missed + 
+                    resultado.results.tendency.not_declared + 
+                    resultado.results.tendency.not_found }}</h1>
+                    <small>Inclui indecisos e deputados não encontrados</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" style="margin-top: 20px; font-size: 14px;">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4" align="right">
+            <small>Fonte: <a href="http://www1.folha.uol.com.br/" target="_blank">http://www1.folha.uol.com.br/</a></small>
+            <br/>
+            <small>Atualizado em: <b>{{ resultado.info.updated }}</b></small>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 50px;">
+    <div class="form-group col-md-12">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="col-md-4">
+                <input type="checkbox" class="form-group" data-ng-model="filtro.favor"> A FAVOR
+            </div>
+            <div class="col-md-4">
+                <input type="checkbox" class="form-group" data-ng-model="filtro.contra"> CONTRA
+            </div>
+            <div class="col-md-4">
+                <input type="checkbox" class="form-group" data-ng-model="filtro.naoOpinou"> NÃO OPINOU
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-12">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <select ng-model="filtro.estado" ng-options="estado.nome for estado in estados" class="form-control"
+            	data-ng-change="alterarEstado()">
+                <option value="">SELECIONAR ESTADO</option>
+            </select>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4" data-ng-repeat="polict in resultado.politics" style="cursor: pointer" align="center" data-ng-if="exibir(polict)" title="Clique para compartilhar essa informação no facebook" data-ng-click="compartilhar(polict)">
+        <img ng-src="{{polict.image}}" alt="" width="90%">
+        <div class="row">
+            <h2>{{ polict.name }}</h2>
+        </div>
+        <div class="row">
+            <h3>{{ polict.party }} - {{ polict.state }}</h3>
+            <div class="row">
+                    <div class="col-md-12">
+                    	<div class="col-md-1"></div>
+                        <div class="col-md-10">
+                        	<div class="panel-heading" width="90%" data-ng-if="polict.trend == 'yes'">
+                        	    <h3 class="panel-title" style="background-color: #326EB4;" align="center">A FAVOR</h3>
+                        	</div>
+                        	<div class="panel-heading" width="90%" data-ng-if="polict.trend == 'no'">
+                        	    <h3 class="panel-title" style="background-color: #D81111" align="center">CONTRA</h3>
+                        	</div>
+                        	<div class="panel-heading" width="90%" data-ng-if="polict.trend != 'no' && polict.trend != 'yes'">
+                        	    <h4 class="panel-title" style="background-color: #A2A2A2" align="center">NÃO OPINOU</h4>
+                        	</div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="col-md-12">
+                    	<div class="col-md-1"></div>
+                    	<div class="col-md-10">
+                			<div class="panel-heading" width="90%">
+                		        <h3 class="panel-title" style="background-color: green" align="center">
+                		        	COMPARTILHAR INFORMAÇÕES
+                		        </h3>
+                		    </div>
+                    	</div>
+                    	<div class="col-md-1"></div>
+                    </div>
+ 
+            </div>
+        </div>
+    </div>
+</div>
